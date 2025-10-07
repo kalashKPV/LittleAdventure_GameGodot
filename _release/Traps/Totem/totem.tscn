@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://h31kln1dodln"]
+
+[ext_resource type="Script" path="res://_release/Traps/Totem/totem.gd" id="1_cwkmw"]
+[ext_resource type="Texture2D" uid="uid://bgxr07lpp8q7u" path="res://_resource/Totems/Head 3/Attack 1/1.png" id="1_ofdgg"]
+[ext_resource type="Texture2D" uid="uid://byri3p05kd0g8" path="res://_resource/Totems/Head 3/Attack 1/2.png" id="2_uchxe"]
+[ext_resource type="Texture2D" uid="uid://0xgo8gwml6ea" path="res://_resource/Totems/Head 3/Attack 1/3.png" id="3_cr8d8"]
+[ext_resource type="Texture2D" uid="uid://d33la133bxaw7" path="res://_resource/Totems/Head 3/Attack 1/4.png" id="4_mtpqw"]
+[ext_resource type="Texture2D" uid="uid://430cub6do5i" path="res://_resource/Totems/Head 3/Attack 1/5.png" id="5_ghn1k"]
+[ext_resource type="Texture2D" uid="uid://ec01eu3jihe4" path="res://_resource/Totems/Head 3/Attack 1/6.png" id="6_y8yvr"]
+[ext_resource type="Texture2D" uid="uid://nnwtpsto8o4q" path="res://_resource/Totems/Head 3/Idle 1/1.png" id="7_6wrpi"]
+[ext_resource type="AudioStream" uid="uid://4pq8dxu1gda5" path="res://_resource/Sounds/Totem/spit.mp3" id="9_alet5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hf85w"]
+size = Vector2(19, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lfxk4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ofdgg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_uchxe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cr8d8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mtpqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ghn1k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_y8yvr")
+}],
+"loop": false,
+"name": &"Attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_6wrpi")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
+
+[node name="Totem" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_cwkmw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hf85w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, -5)
+sprite_frames = SubResource("SpriteFrames_lfxk4")
+animation = &"Attack"
+autoplay = "Idle"
+
+[node name="Position2D" type="Marker2D" parent="."]
+position = Vector2(-13, 5)
+
+[node name="Spit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_alet5")
+volume_db = -30.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

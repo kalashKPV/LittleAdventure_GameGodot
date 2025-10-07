@@ -1,0 +1,101 @@
+[gd_scene load_steps=15 format=3 uid="uid://crtwxuwmgu3uu"]
+
+[ext_resource type="Script" path="res://_release/Button/button.gd" id="1_k885k"]
+[ext_resource type="Texture2D" uid="uid://b5t0ecxuryx71" path="res://_resource/Items/Button/Idle.png" id="2_33d14"]
+[ext_resource type="Texture2D" uid="uid://dl5jpxerbyh88" path="res://_resource/Items/Button/ButtonNotPressed.png" id="3_2iwjc"]
+[ext_resource type="Texture2D" uid="uid://dfcdafsrll14m" path="res://_resource/Items/Button/ButtonPressed.png" id="4_c6rxg"]
+[ext_resource type="AudioStream" uid="uid://c78u4u2086len" path="res://_resource/Sounds/Button/button.mp3" id="5_bmugo"]
+[ext_resource type="AudioStream" uid="uid://csndj06dm07po" path="res://_resource/Sounds/Button/button_pushed.mp3" id="6_dsksy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55c56"]
+atlas = ExtResource("3_2iwjc")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rs18k"]
+atlas = ExtResource("3_2iwjc")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rd6nc"]
+atlas = ExtResource("3_2iwjc")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sd71n"]
+atlas = ExtResource("4_c6rxg")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmbeo"]
+atlas = ExtResource("4_c6rxg")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8xke"]
+atlas = ExtResource("4_c6rxg")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_umgpa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_33d14")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55c56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rs18k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rd6nc")
+}],
+"loop": false,
+"name": &"NotPressed",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sd71n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmbeo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8xke")
+}],
+"loop": false,
+"name": &"Pressed",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ax0wg"]
+size = Vector2(12, 5)
+
+[node name="Button" type="Node2D"]
+script = ExtResource("1_k885k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_umgpa")
+animation = &"Pressed"
+frame = 2
+frame_progress = 1.0
+
+[node name="Pressed" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pressed"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_ax0wg")
+
+[node name="Button" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_bmugo")
+volume_db = -15.0
+
+[node name="ButtonPushed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_dsksy")
+volume_db = -15.0
+
+[connection signal="body_entered" from="Pressed" to="." method="_on_pressed_entered"]
+[connection signal="body_exited" from="Pressed" to="." method="_on_pressed_exited"]

@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://12qoqko6vk6c"]
+
+[ext_resource type="Texture2D" uid="uid://bnls2wakah0io" path="res://_resource/Totems/Wood Spike/Destroyed/1.png" id="1_c0jvd"]
+[ext_resource type="Script" path="res://_release/Traps/Totem/spike.gd" id="1_flfgi"]
+[ext_resource type="Texture2D" uid="uid://ioaena55s1j" path="res://_resource/Totems/Wood Spike/Destroyed/2.png" id="2_5yr7d"]
+[ext_resource type="Texture2D" uid="uid://cruhjacukih2a" path="res://_resource/Totems/Wood Spike/Destroyed/3.png" id="3_cb060"]
+[ext_resource type="Texture2D" uid="uid://dw2mqvfetr11b" path="res://_resource/Totems/Wood Spike/Idle/1.png" id="4_ec4wg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h6gv3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_c0jvd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_5yr7d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cb060")
+}],
+"loop": true,
+"name": &"Destroyed",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ec4wg")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8fiw3"]
+size = Vector2(10, 6)
+
+[node name="Spike" type="Area2D"]
+script = ExtResource("1_flfgi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h6gv3")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8fiw3")

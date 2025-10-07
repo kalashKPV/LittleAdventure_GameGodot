@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://cduddneeydpm7"]
+
+[ext_resource type="Texture2D" uid="uid://drkmtrrhskiq3" path="res://_resource/Mobile Buttons/3.png" id="1_8yfvm"]
+[ext_resource type="Texture2D" uid="uid://ov7h10ssnphy" path="res://_resource/Mobile Buttons/p1.png" id="2_f0ybw"]
+[ext_resource type="Texture2D" uid="uid://dvonym744kchm" path="res://_resource/Mobile Buttons/4.png" id="2_os214"]
+[ext_resource type="Texture2D" uid="uid://lf24qyhr2utt" path="res://_resource/Mobile Buttons/5.png" id="3_iklk1"]
+[ext_resource type="Texture2D" uid="uid://cchppu54bechn" path="res://_resource/Mobile Buttons/6.png" id="4_tk52g"]
+[ext_resource type="Texture2D" uid="uid://36u06d011ncg" path="res://_resource/Mobile Buttons/p2.png" id="4_v8h4x"]
+[ext_resource type="Texture2D" uid="uid://jq6le7e1xqww" path="res://_resource/Mobile Buttons/p3.png" id="6_amokq"]
+[ext_resource type="Texture2D" uid="uid://cqpgojvrixdmf" path="res://_resource/Mobile Buttons/p4.png" id="8_bs8vp"]
+
+[node name="MobileButton" type="CanvasLayer"]
+
+[node name="left" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.486275)
+position = Vector2(65, 555)
+scale = Vector2(3, 3)
+texture_normal = ExtResource("1_8yfvm")
+texture_pressed = ExtResource("2_f0ybw")
+action = "ui_left"
+
+[node name="right" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.486275)
+position = Vector2(200, 555)
+scale = Vector2(3, 3)
+texture_normal = ExtResource("2_os214")
+texture_pressed = ExtResource("4_v8h4x")
+action = "ui_right"
+
+[node name="jump" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.486275)
+position = Vector2(859, 555)
+scale = Vector2(3, 3)
+texture_normal = ExtResource("3_iklk1")
+texture_pressed = ExtResource("6_amokq")
+action = "ui_accept"
+
+[node name="action" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.486275)
+position = Vector2(995, 555)
+scale = Vector2(3, 3)
+texture_normal = ExtResource("4_tk52g")
+texture_pressed = ExtResource("8_bs8vp")
+action = "ui_action"

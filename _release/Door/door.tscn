@@ -1,0 +1,135 @@
+[gd_scene load_steps=20 format=3 uid="uid://pjar0i07wtg0"]
+
+[ext_resource type="Script" path="res://_release/Door/door.gd" id="1_bv2a4"]
+[ext_resource type="Texture2D" uid="uid://cfpd7amhqoc8a" path="res://_resource/Sprites/11-Door/Closiong (46x56).png" id="2_nwyoq"]
+[ext_resource type="Texture2D" uid="uid://crif1ro5r5pcg" path="res://_resource/Sprites/11-Door/Idle.png" id="3_cfiv7"]
+[ext_resource type="Texture2D" uid="uid://cwgwq3tdoxcqf" path="res://_resource/Sprites/11-Door/Opening (46x56).png" id="4_twv7b"]
+[ext_resource type="AudioStream" uid="uid://btsgydj3gqmci" path="res://_resource/Sounds/Door/door-opening.mp3" id="5_hpmj2"]
+[ext_resource type="AudioStream" uid="uid://d8hrw412jqu6" path="res://_resource/Sounds/Door/door-shut.mp3" id="6_ah8kb"]
+[ext_resource type="AudioStream" uid="uid://dgp3dflpfe74m" path="res://_resource/Sounds/Door/door-lock.mp3" id="7_cdwig"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t0bb"]
+atlas = ExtResource("2_nwyoq")
+region = Rect2(0, 0, 46, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sv5fi"]
+atlas = ExtResource("2_nwyoq")
+region = Rect2(46, 0, 46, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxnn1"]
+atlas = ExtResource("2_nwyoq")
+region = Rect2(92, 0, 46, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cwi3"]
+atlas = ExtResource("3_cfiv7")
+region = Rect2(0, 0, 46, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7cao"]
+atlas = ExtResource("4_twv7b")
+region = Rect2(0, 0, 46, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wdnfr"]
+atlas = ExtResource("4_twv7b")
+region = Rect2(46, 0, 46, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33k3v"]
+atlas = ExtResource("4_twv7b")
+region = Rect2(92, 0, 46, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_no1pn"]
+atlas = ExtResource("4_twv7b")
+region = Rect2(138, 0, 46, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5gve"]
+atlas = ExtResource("4_twv7b")
+region = Rect2(184, 0, 46, 56)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tp3f2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t0bb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sv5fi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cxnn1")
+}],
+"loop": false,
+"name": &"Closing",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cwi3")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7cao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wdnfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33k3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_no1pn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5gve")
+}],
+"loop": false,
+"name": &"Opening",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_seim1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_afc6e"]
+size = Vector2(70, 65)
+
+[node name="Door" type="Node2D"]
+script = ExtResource("1_bv2a4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -28)
+sprite_frames = SubResource("SpriteFrames_tp3f2")
+animation = &"Closing"
+metadata/_edit_lock_ = true
+
+[node name="GoToNextScene" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoToNextScene"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_seim1")
+
+[node name="AnimateDoor" type="Area2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimateDoor"]
+position = Vector2(-1, -32.5)
+shape = SubResource("RectangleShape2D_afc6e")
+
+[node name="DoorOpening" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_hpmj2")
+volume_db = -30.0
+
+[node name="DoorClosing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ah8kb")
+volume_db = -30.0
+
+[node name="DoorLock" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_cdwig")
+volume_db = -30.0
+
+[connection signal="body_entered" from="GoToNextScene" to="." method="_on_go_to_next_scene_body_entered"]
+[connection signal="body_exited" from="GoToNextScene" to="." method="_on_go_to_next_scene_body_exited"]
+[connection signal="body_entered" from="AnimateDoor" to="." method="_on_animate_door_body_entered"]
+[connection signal="body_exited" from="AnimateDoor" to="." method="_on_animate_door_body_exited"]

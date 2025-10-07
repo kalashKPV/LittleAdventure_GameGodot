@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://cwkxtrvxtaiet"]
+
+[ext_resource type="Texture2D" uid="uid://cfpvmv17hd7lq" path="res://_resource/Padlock/1.png" id="1_bc165"]
+[ext_resource type="Texture2D" uid="uid://cjvk60tja4q4" path="res://_resource/Padlock/2.png" id="2_g1psf"]
+[ext_resource type="Texture2D" uid="uid://bkxl1xtem3r1c" path="res://_resource/Padlock/3.png" id="3_t7x33"]
+[ext_resource type="Texture2D" uid="uid://s7lib2m4ge4e" path="res://_resource/Padlock/4.png" id="4_ylmdb"]
+[ext_resource type="Script" path="res://_release/Item/padlock.gd" id="5_t5qk7"]
+[ext_resource type="AudioStream" uid="uid://bq0m3l808nvsb" path="res://_resource/Sounds/Door/door-lock-locking.mp3" id="6_akbt7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lcpob"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bc165")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bc165")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_g1psf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_t7x33")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ylmdb")
+}],
+"loop": false,
+"name": &"Open",
+"speed": 5.0
+}]
+
+[node name="Padlock" type="AnimatedSprite2D"]
+position = Vector2(1, -1)
+sprite_frames = SubResource("SpriteFrames_lcpob")
+animation = &"Open"
+autoplay = "Idle"
+script = ExtResource("5_t5qk7")
+
+[node name="DoorLockLocking" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_akbt7")
+volume_db = -20.0

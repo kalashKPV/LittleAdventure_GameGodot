@@ -1,0 +1,192 @@
+[gd_scene load_steps=6 format=3 uid="uid://dy8ikb725opfg"]
+
+[ext_resource type="Script" path="res://_release/Levels/in_game_menu.gd" id="1_qfpca"]
+[ext_resource type="Texture2D" uid="uid://cym88ihvr3fql" path="res://_resource/background,wall,text/Menu/Buttons/Back.png" id="2_a6fs7"]
+[ext_resource type="Theme" uid="uid://br2p8bha7xp1e" path="res://_release/menuButton/Default.tres" id="2_rwci4"]
+[ext_resource type="AudioStream" uid="uid://csndj06dm07po" path="res://_resource/Sounds/Button/button_pushed.mp3" id="4_kiq2o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8x0q"]
+
+[node name="InGameMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_qfpca")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 343.0
+offset_bottom = 43.0
+theme_override_constants/separation = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="TextureButton" type="TextureButton" parent="HBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture_normal = ExtResource("2_a6fs7")
+texture_pressed = SubResource("AtlasTexture_n8x0q")
+stretch_mode = 4
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "SCORE: ???"
+
+[node name="MarginContainer3" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="HiScore" type="Label" parent="HBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "RECORD: ???"
+
+[node name="ConfirmationMenu" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ConfirmationMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -111.5
+offset_top = 141.0
+offset_right = 111.5
+offset_bottom = 189.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 80
+text = "ARE YOU SURE?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonYes" type="Button" parent="ConfirmationMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -286.0
+offset_top = -117.0
+offset_right = 274.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_rwci4")
+theme_override_font_sizes/font_size = 40
+text = "Yes"
+
+[node name="ButtonNo" type="Button" parent="ConfirmationMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -286.0
+offset_top = 48.0
+offset_right = 274.0
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_rwci4")
+theme_override_font_sizes/font_size = 40
+text = "No"
+
+[node name="GameOver" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="YouDied" type="Label" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -202.0
+offset_right = 96.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 80
+text = "YOU DIED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Try again" type="Button" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -110.0
+offset_right = 280.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_rwci4")
+theme_override_font_sizes/font_size = 40
+text = "Try again"
+
+[node name="Levels" type="Button" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = 40.0
+offset_right = 280.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_rwci4")
+theme_override_font_sizes/font_size = 40
+text = "Levels"
+
+[node name="MainMenu" type="Button" parent="GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = 188.0
+offset_right = 280.0
+offset_bottom = 318.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_rwci4")
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
+
+[node name="ButtonPushed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kiq2o")
+volume_db = -15.0
+
+[connection signal="pressed" from="HBoxContainer/MarginContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="ConfirmationMenu/ButtonYes" to="." method="_on_button_yes_pressed"]
+[connection signal="pressed" from="ConfirmationMenu/ButtonNo" to="." method="_on_button_no_pressed"]
+[connection signal="pressed" from="GameOver/Try again" to="." method="_on_try_again_pressed"]
+[connection signal="pressed" from="GameOver/Levels" to="." method="_on_levels_pressed"]
+[connection signal="pressed" from="GameOver/MainMenu" to="." method="_on_main_menu_pressed"]

@@ -1,0 +1,65 @@
+[gd_scene load_steps=13 format=3 uid="uid://vmpi0einroem"]
+
+[ext_resource type="Script" path="res://_release/Item/item.gd" id="1_indlq"]
+[ext_resource type="Texture2D" uid="uid://dqax15kephykj" path="res://_resource/Items/Diamond Effect/01.png" id="2_ghrq3"]
+[ext_resource type="Texture2D" uid="uid://dwmbnbnf5oekj" path="res://_resource/Items/Green Diamond/01.png" id="2_rfggp"]
+[ext_resource type="AudioStream" uid="uid://bi3f2peipt8mj" path="res://_resource/Sounds/Item/blop1.mp3" id="3_2ll07"]
+[ext_resource type="Texture2D" uid="uid://ggoye4ib0ggj" path="res://_resource/Items/Diamond Effect/02.png" id="3_rfveq"]
+[ext_resource type="Texture2D" uid="uid://crup41etcwuf5" path="res://_resource/Items/Diamond Effect/03.png" id="4_75baa"]
+[ext_resource type="Texture2D" uid="uid://blhg7yub068jt" path="res://_resource/Items/Diamond Effect/04.png" id="5_hrewr"]
+[ext_resource type="Texture2D" uid="uid://bgawm0166wrp0" path="res://_resource/Items/Green Diamond/02.png" id="7_76qyo"]
+[ext_resource type="Texture2D" uid="uid://cv5cvb5ie2g66" path="res://_resource/Items/Green Diamond/03.png" id="8_rvf4p"]
+[ext_resource type="Texture2D" uid="uid://df33gcshuaxlp" path="res://_resource/Items/Green Diamond/04.png" id="9_cl44t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h58sy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1w6pl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ghrq3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rfveq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_75baa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hrewr")
+}],
+"loop": false,
+"name": &"Effect",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rfggp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_76qyo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_rvf4p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_cl44t")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}]
+
+[node name="GreenDiamond" type="Area2D"]
+script = ExtResource("1_indlq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_h58sy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1w6pl")
+animation = &"Effect"
+autoplay = "Idle"
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2ll07")
